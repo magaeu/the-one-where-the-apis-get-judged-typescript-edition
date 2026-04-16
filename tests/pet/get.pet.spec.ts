@@ -1,10 +1,13 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from '../../fixtures/pet.fixture';
 
-
-test.describe('Get Pet', () => {
-    test('the response contains pet data for a valid pet ID', async ({ request }) => {
-        const petId = 1; // Replace with a valid pet ID
-        const response = await request.get(`/pet/${petId}`);
+test.describe('Get Pet', {
+    tag: '@pet'
+}, () => {
+    test('the response contains pet data for a valid pet ID', {
+        tag: ['@smoke', '@valid-id ']
+    }, async ({ petClient }) => {
+        const petId = 1;
+        const response = await petClient.getPetById(petId);
         expect(response.status()).toBe(200);
         const pet = await response.json();
         expect(pet.id).toBe(petId);
