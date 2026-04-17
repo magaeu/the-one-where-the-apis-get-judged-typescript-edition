@@ -13,6 +13,6 @@ export interface Pet {
     category?: Category;
     name: string;
     photoUrls: string[];
-    tag?: string;
+    tags?: Tag[];
     status?: 'available' | 'pending' | 'sold';
 }

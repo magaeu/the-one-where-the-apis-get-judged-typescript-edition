@@ -6,6 +6,6 @@
     "dotenv": "^17.4.2"
   },
   "scripts": {
-    "test": "npx playwright test"
+    "test": "DEBUG=pw:api npx playwright test"
   }
 }

@@ -1,5 +1,5 @@
 export enum APIRoutes {
-  Pet = '/pet',
-  Store = '/store',
-  User = '/user'
+  Pet = 'pet',
+  Store = 'store',
+  User = 'user'
 }
