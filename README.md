@@ -5,11 +5,12 @@
 - Validate status code
 - Validate schema response
 - Validate response content
-- Use builder for request and response
+- Use builder for generating data
 - Use given - when - then structure
 - Parametized tests
 - Use environment variables
 - Use types
+- Use tags
 
 ## References
 

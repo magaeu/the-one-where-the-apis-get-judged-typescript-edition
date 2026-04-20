@@ -11,6 +11,7 @@ export const test = base.extend<PetFixture>({
     const petClient = new PetAPIClient(defaultContext.context);
 
     await use(petClient);
+    await defaultContext.context.dispose();
   }
 });
 
