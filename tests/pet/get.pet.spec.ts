@@ -4,32 +4,38 @@ import { Category, Pet, Tag } from '../../types/pet.types';
 import { toMatchSchema } from '../../utils/helpers/schema.matcher';
 
 test.describe('Get Pet', {
-    tag: '@pet'
+  tag: '@pet'
 }, () => {
-    test('the response contains pet data for a valid pet ID', {
-        tag: ['@smoke', '@valid-id ']
+  test('the response contains pet data for a valid pet ID', {
+    tag: ['@smoke', '@valid-id ']
+  }, async ({ petClient }) => {
+    const petTestData: Pet = await getPetTestData();
+
+    const createResponse = await petClient.createPet(petTestData);
+
+    const response = await petClient.getPetById(petTestData.id);
+    expect(response.status()).toBe(200);
+    expect((await toMatchSchema(response, getPetByIdSchema)).pass).toBeTruthy();
+
+    const petJsonResponse = await response.json();
+    expect(petJsonResponse.id).toBe(petTestData.id);
+  });
+
+  let invalidPetId = [
+    { "name": "string", "value": "invalid-id" },
+    { "name": "negative value", "value": -1 },
+    { "name": "non exiting value", "value": 9999999999 }];
+
+  for (const petId of invalidPetId) {
+    test(`the response returns 404 for an invalid pet ID - ${petId.name}`, {
+      tag: ['@sanity', '@invalid-id']
     }, async ({ petClient }) => {
-        const petTestData: Pet = await getPetTestData();
+      const response = await petClient.getPetById(petId.value as unknown as number);
 
-        const createResponse = await petClient.createPet(petTestData);
-
-        const response = await petClient.getPetById(petTestData.id);
-        expect(response.status()).toBe(200);
-        expect((await toMatchSchema(response, getPetByIdSchema)).pass).toBeTruthy();
-
-        const petJsonResponse = await response.json();
-        expect(petJsonResponse.id).toBe(petTestData.id);
-    });
-
-    test('the response returns 404 for an invalid pet ID', {
-        tag: ['@sanity', '@invalid-id']
-    }, async ({ petClient }) => {
-        const invalidPetId = "invalid-id"; // Replace with an ID that does not exist
-        const response = await petClient.getPetById(invalidPetId as unknown as number);
-        
-        expect(response.status()).toBe(404);
-        expect((await toMatchSchema(response, petNotFoundSchema)).pass).toBeTruthy();
-    });
+      expect(response.status()).toBe(404);
+      expect((await toMatchSchema(response, petNotFoundSchema)).pass).toBeTruthy();
+    })
+  };
 });
 
 async function getPetTestData(): Promise<Pet> {
