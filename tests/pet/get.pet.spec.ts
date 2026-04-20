@@ -1,4 +1,5 @@
 import { test, expect } from '../../fixtures/pet.fixture';
+import { getPetByIdSchema } from '../../schemas/pet.schema';
 import { Category, Pet, Tag } from '../../types/pet.types';
 
 test.describe('Get Pet', {
@@ -13,11 +14,17 @@ test.describe('Get Pet', {
 
         const response = await petClient.getPetById(petTestData.id);
         expect(response.status()).toBe(200);
-        const pet = await response.json();
-        expect(pet.id).toBe(petTestData.id);
+
+        const petJsonResponse = await response.json();
+        const schemaValidation = getPetByIdSchema.safeParse(petJsonResponse);
+        expect(schemaValidation.success).toBeTruthy();
+
+        expect(petJsonResponse.id).toBe(petTestData.id);
     });
 
-    test('the response returns 400 for an invalid pet ID', async ({ petClient }) => {
+    test('the response returns 400 for an invalid pet ID', {
+        tag: ['@sanity', '@invalid-id']
+    }, async ({ petClient }) => {
         const invalidPetId = "invalid-id"; // Replace with an invalid pet ID
         const response = await petClient.getPetById(invalidPetId as unknown as number);
         expect(response.status()).toBe(404);
