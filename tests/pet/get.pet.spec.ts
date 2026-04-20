@@ -1,6 +1,7 @@
 import { test, expect } from '../../fixtures/pet.fixture';
-import { getPetByIdSchema } from '../../schemas/pet.schema';
+import { getPetByIdSchema, petNotFoundSchema } from '../../schemas/pet.schema';
 import { Category, Pet, Tag } from '../../types/pet.types';
+import { toMatchSchema } from '../../utils/helpers/schema.matcher';
 
 test.describe('Get Pet', {
     tag: '@pet'
@@ -14,27 +15,21 @@ test.describe('Get Pet', {
 
         const response = await petClient.getPetById(petTestData.id);
         expect(response.status()).toBe(200);
+        expect((await toMatchSchema(response, getPetByIdSchema)).pass).toBeTruthy();
 
         const petJsonResponse = await response.json();
-        const schemaValidation = getPetByIdSchema.safeParse(petJsonResponse);
-        expect(schemaValidation.success).toBeTruthy();
-
         expect(petJsonResponse.id).toBe(petTestData.id);
     });
 
-    test('the response returns 400 for an invalid pet ID', {
+    test('the response returns 404 for an invalid pet ID', {
         tag: ['@sanity', '@invalid-id']
     }, async ({ petClient }) => {
-        const invalidPetId = "invalid-id"; // Replace with an invalid pet ID
+        const invalidPetId = "invalid-id"; // Replace with an ID that does not exist
         const response = await petClient.getPetById(invalidPetId as unknown as number);
+        
         expect(response.status()).toBe(404);
+        expect((await toMatchSchema(response, petNotFoundSchema)).pass).toBeTruthy();
     });
-
-    // test('the response returns 404 for a non-existent pet', async ({ request }) => {
-    //     const nonExistentPetId = 9999; // Replace with an ID that does not exist
-    //     const response = await request.get(`/pet/${nonExistentPetId}`);
-    //     expect(response.status()).toBe(404);
-    // });
 });
 
 async function getPetTestData(): Promise<Pet> {
