@@ -1,7 +1,7 @@
-import { PetBuilder } from '../../data-generator/pet.builder';
-import { test, expect } from '../../fixtures/pet.fixture';
-import { createdPetSchema } from '../../schemas/pet.schema';
-import { toMatchSchema } from '../../utils/helpers/schema.matcher';
+import { PetBuilder } from '@data-generator/pet.builder';
+import { test, expect } from '@fixtures/pet.fixture';
+import { createdPetSchema } from '@schemas/pet.schema';
+import { toMatchSchema } from '@utils/helpers/schema.matcher';
 
 test.describe('Create Pet', {
     tag: '@pet'

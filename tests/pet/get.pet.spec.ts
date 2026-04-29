@@ -1,7 +1,7 @@
-import { test, expect } from '../../fixtures/pet.fixture';
-import { getPetByIdSchema, petNotFoundSchema } from '../../schemas/pet.schema';
+import { test, expect } from '@fixtures/pet.fixture';
+import { getPetByIdSchema, petNotFoundSchema } from '@schemas/pet.schema';
 import { Category, Pet, Tag } from '../../types/pet.types';
-import { toMatchSchema } from '../../utils/helpers/schema.matcher';
+import { toMatchSchema } from '@utils/helpers/schema.matcher';
 
 test.describe('Get Pet', {
   tag: '@pet'
@@ -24,10 +24,10 @@ test.describe('Get Pet', {
   let invalidPetId = [
     { "name": "string", "value": "invalid-id" },
     { "name": "negative value", "value": -1 },
-    { "name": "non exiting value", "value": 9999999999 }];
+    { "name": "non exiting value", "value": 9999999909 }];
 
   for (const petId of invalidPetId) {
-    test(`the response returns 404 for an invalid pet ID - ${petId.name}`, {
+    test(`the response returns 404 for an invalid pet ID - ${petId.name}: ${petId.value}`, {
       tag: ['@sanity', '@invalid-id']
     }, async ({ petClient }) => {
       const response = await petClient.getPetById(petId.value as unknown as number);

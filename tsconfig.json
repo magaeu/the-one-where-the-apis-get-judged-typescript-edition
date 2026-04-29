@@ -9,7 +9,27 @@
         "strictFunctionTypes": true,
         "strict": true,
         "sourceMap": true,
-        "types": ["node", "@playwright/test"]
+        "types": [
+            "node",
+            "@playwright/test"
+        ],
+        "paths": {
+            "@api/*": [
+                "./api/*"
+            ],
+            "@data-generator/*": [
+                "./data-generator/*"
+            ],
+            "@fixtures/*": [
+                "./fixtures/*"
+            ],
+            "@schemas/*": [
+                "./schemas/*"
+            ],
+            "@utils/*": [
+                "./utils/*"
+            ],
+        }
     },
     "exclude": [
         "node_modules",

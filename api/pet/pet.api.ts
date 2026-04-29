@@ -1,8 +1,7 @@
 import test, { APIResponse, APIRequestContext } from "@playwright/test";
-import { APIRoutes } from "../../utils/constants/routes";
-import { APIClient } from "../../types/api.client.types";
-import { getDefaultAPIContext } from "../default.context";
-import { Pet } from "../../types/pet.types";
+import { APIRoutes } from "@utils/constants/routes";
+import { APIClient } from "@api.client.types";
+import { getDefaultAPIContext } from "@api/default.context";
 
 export class PetAPIClient implements APIClient {
     

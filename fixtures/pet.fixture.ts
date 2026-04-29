@@ -1,5 +1,5 @@
 import { test as base } from '@playwright/test';
-import { getPetClient, PetAPIClient } from '../api/pet/pet.api';
+import { getPetClient, PetAPIClient } from '@api/pet/pet.api';
 
 export type PetFixture = {
   petClient: PetAPIClient;
