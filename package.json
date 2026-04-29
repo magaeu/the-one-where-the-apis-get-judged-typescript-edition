@@ -1,13 +1,20 @@
 {
-  "devDependencies": {
-    "@faker-js/faker": "^10.4.0",
-    "@playwright/test": "^1.59.1",
-    "@types/dotenv": "^6.1.1",
-    "@types/node": "^25.6.0",
-    "dotenv": "^17.4.2",
-    "zod": "^4.3.6"
-  },
-  "scripts": {
-    "test": "DEBUG=pw:api npx playwright test"
-  }
+    "devDependencies": {
+        "@faker-js/faker": "^10.4.0",
+        "@playwright/test": "^1.59.1",
+        "@types/dotenv": "^6.1.1",
+        "@types/node": "^25.6.0",
+        "@typescript-eslint/eslint-plugin": "^8.59.1",
+        "@typescript-eslint/parser": "^8.59.1",
+        "dotenv": "^17.4.2",
+        "eslint": "^10.2.1",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-define-config": "^2.1.0",
+        "eslint-plugin-playwright": "^2.10.2",
+        "eslint-plugin-prettier": "^5.5.5",
+        "zod": "^4.3.6"
+    },
+    "scripts": {
+        "test": "DEBUG=pw:api npx playwright test"
+    }
 }

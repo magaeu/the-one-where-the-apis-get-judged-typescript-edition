@@ -15,6 +15,7 @@ This is a TypeScript-based API testing framework using Playwright for comprehens
 - **npm**: Package manager for dependency management.
 
 ## Prerequisites
+
 - **Node.js** (version 18 or higher) - Download from [nodejs.org](https://nodejs.org/)
 - **npm** (comes bundled with Node.js)
 
@@ -42,7 +43,7 @@ npm test
 ├── README.md               Project documentation and usage guide
 ├── tsconfig.json           TypeScript compiler settings
 ├── api/                    Holds API client, request context code and resources implementation
-├── data-generator/         Contains test data generation utilities 
+├── data-generator/         Contains test data generation utilities
 ├── env/                    Environment-specific configuration files
 ├── fixtures/               Reusable test fixtures for scenarios
 ├── schemas/                Schema definitions for API responses
@@ -50,7 +51,7 @@ npm test
 ├── types/                  Shared TypeScript type definitions
 ├── utils/                  Shared utilities and helper functions
     ├── constants           Common shared values
-    └── helpers             Shared helper functions            
+    └── helpers             Shared helper functions
 ```
 
 ## Key Features
@@ -64,6 +65,8 @@ npm test
 - Use environment variables
 - Use types
 - Use tags
+- Use absolute paths on typescript configuration
+- Use prettier for code format rules
 
 ## References
 

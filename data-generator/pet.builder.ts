@@ -1,4 +1,4 @@
-import { Category, Pet, Tag } from "../types/pet.types";
+import { Category, Pet, Tag } from '../types/pet.types';
 import { faker } from '@faker-js/faker';
 
 export class PetBuilder {
@@ -11,11 +11,11 @@ export class PetBuilder {
             name: this.generateName(),
             photoUrls: this.generatePhotoUrls(),
             tags: this.generateTags(),
-            status: this.generateStatus()
-        }
+            status: this.generateStatus(),
+        };
     }
 
-    build(): Pet{
+    build(): Pet {
         return this.pet;
     }
 
@@ -29,8 +29,8 @@ export class PetBuilder {
 
         const category: Category = {
             id: id,
-            name: name
-        }
+            name: name,
+        };
 
         return category;
     }
@@ -49,14 +49,15 @@ export class PetBuilder {
     private generateTags(): Tag[] {
         const id = faker.number.int({ min: 1, max: 50 });
         const name = faker.string.alpha({ length: { min: 3, max: 10 } });
-        const tags: Tag[] = [{
-            id: id,
-            name: name
-        }];
+        const tags: Tag[] = [
+            {
+                id: id,
+                name: name,
+            },
+        ];
 
         return tags;
     }
-
 
     private generateStatus() {
         const numberChoice = faker.number.int({ min: 1, max: 3 });
@@ -72,6 +73,6 @@ function getStatus(status: number) {
         case 2:
             return 'pending';
         case 3:
-            return 'sold'; 
+            return 'sold';
     }
 }

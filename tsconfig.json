@@ -9,30 +9,31 @@
         "strictFunctionTypes": true,
         "strict": true,
         "sourceMap": true,
-        "types": [
-            "node",
-            "@playwright/test"
-        ],
+        "types": ["node", "@playwright/test"],
         "paths": {
-            "@api/*": [
-                "./api/*"
-            ],
-            "@data-generator/*": [
-                "./data-generator/*"
-            ],
-            "@fixtures/*": [
-                "./fixtures/*"
-            ],
-            "@schemas/*": [
-                "./schemas/*"
-            ],
-            "@utils/*": [
-                "./utils/*"
-            ],
+            "@api/*": ["./api/*"],
+            "@data-generator/*": ["./data-generator/*"],
+            "@fixtures/*": ["./fixtures/*"],
+            "@schemas/*": ["./schemas/*"],
+            "@utils/*": ["./utils/*"]
         }
     },
+    "include": [
+        "*.ts",
+        "*.mts",
+        "api/**/*.ts",
+        "data-generator/**/*.ts",
+        "fixtures/**/*.ts",
+        "schemas/**/*.ts",
+        "tests/**/*.ts",
+        "types/**/*.ts",
+        "utils/**/*.ts"
+    ],
     "exclude": [
         "node_modules",
-        "**/node_modules/*"
+        "**/node_modules/*",
+        "dist",
+        "playwright-report",
+        "test-results"
     ]
 }
